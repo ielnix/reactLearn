@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- input标签要闭合 -->
+	<!-- 获取真实DOM  需要给标签上加上ref属性 -->
+	<!-- React支持 Click KeyDown Copy Scroll等事件 -->
+	<script type='text/babel'>
+		var MyComponent=React.createClass({
+			btnClick:function(){
+				this.refs.myTextInput.focus();
+			},
+			render:function(){
+				return (
+					<div>
+						<input type="text" ref='myTextInput'/>
+						<input type="button" value="Focus the text input" onClick={this.btnClick}/>
+					</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<MyComponent/>,
+			document.getElementById('demo')
+		);
+	</script>
+</body>
+</html>

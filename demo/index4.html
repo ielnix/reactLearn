@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PropTypes</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!--  propTypes 验证组件的属性-->
+	<!-- title: React.PropTypes.string.isRequired
+			组件上的title 是必须的  而且它的值必须是字符串
+		 -->
+	<script type='text/babel'>
+		var MyTitle=React.createClass({
+			propTypes: {
+				title: React.PropTypes.string.isRequired,
+			},
+			render: function(){
+				return <h1>{this.props.title}</h1>;
+			}
+		});
+		var data=123;
+		ReactDOM.render(
+			<MyTitle title={data}></MyTitle>,
+			document.getElementById('demo')
+		);
+	</script>
+	<div id="demo1"></div>
+	<!-- getDefaultProps 设置组件的默认属性值 -->
+	<script type='text/babel'>
+		var MyTitle=React.createClass({
+			getDefaultProps:function(){
+				return {
+					title:'hello'
+				};
+			},
+			render:function(){
+				return <h1>{this.props.title}</h1>
+			}
+		});
+
+		ReactDOM.render(
+			<MyTitle></MyTitle>,
+			document.getElementById('demo1')
+		)
+
+	</script>
+</body>
+</html>

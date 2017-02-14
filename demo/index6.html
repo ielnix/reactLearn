@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this.state</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- 该demo组件功能为  设置状态 点击时 取反 -->
+	<!-- this.props和this.state的区别：
+			this.props 一旦定义就不会改变的特性
+			this.state 跟随用户的互动产生变化 -->
+	<script type='text/babel'>
+		var LikeButton=React.createClass({
+			getInitialState:function(){
+				return {liked:false};
+			},
+			btnClick:function(){
+				this.setState({liked:!this.state.liked});
+			},
+			render:function(){
+				var text=this.state.liked?'like':'haven\'t liked';
+				return (
+					<button onClick={this.btnClick}>
+						You {text} this.Click to toggle.
+					</button>
+				)
+			}
+		});
+		ReactDOM.render(
+			<LikeButton></LikeButton>,
+			document.getElementById('demo')
+		);
+	</script>
+</body>
+</html>

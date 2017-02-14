@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- getInitialState  初始化 -->
+	<!-- 类似于数据双向绑定 -->
+	<!-- 用event.target.value 获取用户输入的值  event要作为参数传入 -->
+	<!-- textarea select radio 都可以读取 -->
+	<script type='text/babel'>
+		var Input=React.createClass({
+			getInitialState:function(){
+				return {value:'hello'};
+			},
+			hanleChange:function(e){
+				this.setState({value:e.target.value});
+			},
+			render:function(){
+				var value=this.state.value;
+				return (
+					<div>
+						<input type="text" value={value} onChange={this.hanleChange} />
+						<p>{value}</p>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Input/>,
+			document.getElementById('demo')
+		)
+	</script>
+</body>
+</html>

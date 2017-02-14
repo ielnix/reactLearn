@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- 封装组件  
+		每个组件类都有自己的render方法 输出组件 
+		组件上加入的属性可以在this.props对象上提取
+		添加class属性要写成className
+		for===>htmlFor  -->
+	<!-- React.createClass  创建一个组件类的方法 -->
+	<!-- 坑！！！
+		注意：自定义组件标签的时候 标签首字母要大写   
+				只能存在一个根标签  不然不生效-->
+	<script type="text/babel">
+		var SayHello=React.createClass({
+			render:function(){
+				return <h1>Hello {this.props.name}</h1>
+			}
+		});
+		ReactDOM.render(
+			<SayHello name='xl' />,
+			document.getElementById('demo')	
+		);
+	</script>
+</body>
+</html>

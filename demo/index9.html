@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+	<script src='./libs/jquery.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- 注：组件的标签一定要闭合 -->
+	<!-- 使用componentDidMount 方法发送ajax请求  请求成功后再用this.setState重新渲染 -->
+	<script type='text/babel'>
+		var User=React.createClass({
+			getInitialState:function(){
+				return {
+					username:'',
+					url:''
+				};
+			},
+			componentDidMount:function(){
+				$.get(this.props.source,function(data){
+					var info=data[0];
+					if(this.isMounted()){
+						this.setState({
+							username:info.owner.login,
+							url:info.html_url
+						});
+					}
+				}.bind(this));
+			},
+			render:function(){
+				return (
+					<div>
+						{this.state.username}'s last gist is
+						<a href={this.state.url}>here</a>
+					</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<User source='https://api.github.com/users/octocat/gists' />,
+			document.getElementById('demo')
+		);
+	</script>
+</body>
+</html>

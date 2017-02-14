@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this.props.children</title>
+	<script src='./libs/react.js'></script>
+	<script src='./libs/react-dom.js'></script>
+	<script src='./libs/browser.min.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<!-- this.props.children  表示所有的子节点
+			1.若组件没有子节点  undefined
+			2.若一个子节点  数据类型  object
+			3.若多个自己点  数据类型  array   -->
+	<script type="text/babel">
+		var NotesList=React.createClass({
+			render: function(){
+				return(
+					<ol>
+						{
+							React.Children.map(this.props.children,function(child){
+								return <li>{child}</li>;
+							})
+						}
+					</ol>
+				);
+			}
+		});
+		ReactDOM.render(
+			<NotesList>
+				<span>Hello</span>
+				<span>World</span>
+			</NotesList>,
+			document.getElementById('demo')
+		);
+	</script>
+</body>
+</html>
